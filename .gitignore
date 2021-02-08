@@ -1,0 +1,6 @@
+.vscode
+*.o
+test.c
+*.so
+a.out
+test
