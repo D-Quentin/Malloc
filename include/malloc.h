@@ -29,17 +29,14 @@ list_t *find_free_node(size_t size);
 void go_to_first(void);
 list_t *go_to_node(void *ptr);
 
-//Free
+//Alloc
 void free(void *ptr);
-
-//Malloc
 void *malloc(size_t size);
-
-//Realloc
 void *realloc(void *ptr, size_t size);
+void *calloc(size_t nmemb, size_t size);
+void *reallocarray(void *ptr, size_t nmemb, size_t size);
 
 //Pow
-size_t pow2(size_t i);
 size_t pow_sup(size_t size);
 
 #endif /* !MY_MALLOC_H_ */

@@ -69,3 +69,36 @@ void *realloc(void *ptr, size_t size)
     // }
     // return (NULL);
 }
+
+void *calloc(size_t nmemb, size_t size)
+{
+    void *ptr = malloc(nmemb * size);
+
+    if (ptr == NULL)
+        return (NULL);
+    memset(ptr, 0, nmemb * size);
+    return (ptr);
+}
+
+void *reallocarray(void *ptr, size_t nmemb, size_t size)
+{
+    void *new_ptr = NULL;
+    list_t *node = go_to_node(ptr);
+
+    if (ptr == NULL)
+        return (calloc(nmemb, size));
+    if (size == 0) {
+        free(ptr);
+        return (NULL);
+    }
+    if (node == NULL)
+        return (NULL);
+    if (size <= node->size)
+        return (ptr);
+    new_ptr = calloc(nmemb, size);
+    if (new_ptr == NULL)
+        return (NULL);
+    memcpy(new_ptr, ptr, size - 1);
+    free(ptr);
+    return (new_ptr);
+}
