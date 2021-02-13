@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 list_t *create_node(void)
 {
@@ -86,9 +87,7 @@ size_t pow_sup(size_t size)
     size_t new_size = 2;
     int i = 0;
 
-    for (; pow(2, i) < size ; i++) {
+    for (; new_size < size ; i++)
         new_size = pow(2, i);
-    }
-    new_size = pow(2, i);
     return (new_size);
 }

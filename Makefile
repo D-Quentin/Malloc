@@ -5,8 +5,8 @@
 ## Makefile
 ##
 
-SRC=		src/malloc.c		\
-			src/gest_node.c		\
+SRC=		src/malloc2.c		\
+			src/gest_node2.c		\
 
 
 NAME=		libmy_malloc.so
