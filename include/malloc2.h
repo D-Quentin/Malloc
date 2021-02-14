@@ -28,7 +28,8 @@ list_t *new_node(size_t size);
 list_t *find_free_node(size_t size);
 void go_to_first(void);
 list_t *go_to_node(void *ptr);
-void init_mem(size_t size);
+void init_mem(size_t size, void *ptr);
+//list_t *new_block(size_t size);
 
 //Alloc
 void free(void *ptr);
