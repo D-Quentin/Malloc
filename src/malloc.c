@@ -9,18 +9,19 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 void *malloc(size_t size)
 {
-    size_t real_size = pow_sup(size);
-    list_t *node = find_free_node(real_size);
+    list_t *node = find_free_node(size);
 
-    go_to_first();
     if (size == 0)
         return (NULL);
-    if (node == NULL)
-        node = new_node(real_size);
-    go_to_first();
+    if (node == NULL) {
+        node = new_node(size);
+    } else {
+        node->free = 0;
+    }
     if (node == NULL)
         return (NULL);
     return (node->ptr);
@@ -57,17 +58,6 @@ void *realloc(void *ptr, size_t size)
     memcpy(new_ptr, ptr, size - 1);
     free(ptr);
     return (new_ptr);
-    // if (node != NULL && real_size <= node->size) {
-    //     node->size = real_size;
-    //     return (node->ptr);
-    // }
-    // if (node != NULL) {
-    //     tmp = malloc(real_size);
-    //     memcpy(tmp, ptr, real_size - 1);
-    //     free(ptr);
-    //     return (tmp);
-    // }
-    // return (NULL);
 }
 
 void *calloc(size_t nmemb, size_t size)

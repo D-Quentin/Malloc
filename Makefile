@@ -5,8 +5,9 @@
 ## Makefile
 ##
 
-SRC=		src/malloc2.c		\
-			src/gest_node2.c		\
+SRC=		src/gest_node.c		\
+			src/gest_node2.c	\
+			src/malloc.c		\
 
 
 NAME=		libmy_malloc.so
@@ -15,9 +16,9 @@ XX=			gcc
 
 OBJ=		$(SRC:.c=.o)
 
-LDFLAGS=	-shared -fPIC
+LDFLAGS=	-shared
 
-CFLAGS=		-fPIC -Wall -Wextra
+CFLAGS=		-Wall -Wextra
 
 CPPFLAGS=	-I ./include -lm
 
