@@ -12,41 +12,48 @@
 
 list_t *init_mem(size_t size, void *ptr)
 {
-    void *tmp_ptr = NULL;
     size_t alloc_size = getpagesize();
 
-    if (ptr == (void *)-1)
-        return (NULL);
     while (alloc_size < size + sizeof(list_t)) {
-        tmp_ptr = sbrk(getpagesize());
-        if (tmp_ptr == (void *)-1)
+        if (sbrk(getpagesize()) == (void *)-1)
             return (NULL);
         alloc_size += getpagesize();
     }
-    init_mem2(size, ptr);
-    return (head);
-}
-
-void init_mem2(size_t size, void *ptr)
-{
-    void *tmp_ptr = sbrk(getpagesize());
-    if (tmp_ptr == (void *)-1)
-        return;
+    if (sbrk(getpagesize()) == (void *)-1)
+        return (NULL);
     head = ptr;
     head->ptr = ptr + sizeof(list_t);
     head->free = 0;
     head->next = NULL;
     head->size = size;
     end = head;
+    return (head);
+}
+
+list_t *new_node(size_t size)
+{
+    void *ptr = sbrk(getpagesize());
+    size_t alloc_size = getpagesize();
+
+    if (head == NULL)
+        return (init_mem(size, ptr));
+    if (head == NULL || end == NULL || ptr == (void *)-1)
+        return (NULL);
+    while (alloc_size < size + sizeof(list_t)) {
+        if (sbrk(getpagesize()) == (void *)-1)
+            return (NULL);
+        alloc_size += getpagesize();
+    }
+    new_node2(size, ptr);
+    return (end);
 }
 
 void new_node2(size_t size, void *ptr)
 {
     list_t *last_node = NULL;
-    void *tmp_ptr = sbrk(getpagesize());
 
-    if (tmp_ptr == (void *)-1)
-        return;
+    if (sbrk(getpagesize()) == (void *)-1)
+        return (NULL);
     last_node = ptr;
     last_node->ptr = last_node + sizeof(list_t);
     last_node->size = size;

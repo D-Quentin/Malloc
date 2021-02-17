@@ -6,7 +6,6 @@
 ##
 
 SRC=		src/gest_node.c		\
-			src/gest_node2.c	\
 			src/malloc.c		\
 
 
