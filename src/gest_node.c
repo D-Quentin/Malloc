@@ -53,7 +53,7 @@ void new_node2(size_t size, void *ptr)
     list_t *last_node = NULL;
 
     if (sbrk(getpagesize()) == (void *)-1)
-        return (NULL);
+        return;
     last_node = ptr;
     last_node->ptr = last_node + sizeof(list_t);
     last_node->size = size;

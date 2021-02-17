@@ -23,14 +23,11 @@ static list_t *head = NULL;
 static list_t *end = NULL;
 
 // Gest node
-list_t *create_node(void);
 list_t *new_node(size_t size);
 void new_node2(size_t size, void *ptr);
 list_t *find_free_node(size_t size);
-void go_to_first(void);
 list_t *go_to_node(void *ptr);
 list_t *init_mem(size_t size, void *ptr);
-void init_mem2(size_t size, void *ptr);
 
 //Alloc
 void free(void *ptr);
